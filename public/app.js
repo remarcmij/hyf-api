@@ -1,4 +1,8 @@
 {
+  const BASE_URL = 'http://localhost:3000';
+  const PRIZES_ENDPOINT = BASE_URL + '/prizes';
+  const LAUREATES_ENDPOINT = BASE_URL + '/laureates';
+
   class NobelApp {
 
     constructor() {
@@ -20,10 +24,14 @@
       this.root.appendChild(div);
       const input = document.createElement('input');
       div.appendChild(input);
-      const button = document.createElement('button');
-      div.appendChild(button);
-      button.innerHTML = 'SUBMIT';
-      button.addEventListener('click', () => this.onClick(input.value));
+      const prizesButton = document.createElement('button');
+      div.appendChild(prizesButton);
+      prizesButton.innerHTML = 'PRIZES';
+      prizesButton.addEventListener('click', () => this.onPrizesClick(input.value));
+      const laureatesButton = document.createElement('button');
+      div.appendChild(laureatesButton);
+      laureatesButton.innerHTML = 'LAUREATES';
+      laureatesButton.addEventListener('click', () => this.onLaureatesClick(input.value));
     }
 
     renderListContainer() {
@@ -38,9 +46,14 @@
       li.innerHTML = 'Alas, not me!';
     }
 
-    onClick(value) {
-      console.log(value);
+    onPrizesClick(value) {
+      console.log(PRIZES_ENDPOINT + '?' + value);
     }
+
+    onLaureatesClick(value) {
+      console.log(LAUREATES_ENDPOINT + '?' + value);
+    }
+
   }
 
   function start() {
