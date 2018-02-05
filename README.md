@@ -69,15 +69,15 @@ This folder just contains the picture used in this README file.
 The backend application exposes the following Web API end point for Nobel Prizes:
 
 ```
-GET http://localhost:3000/prizes
+http://localhost:3000/prizes
 ```
 
-This particular end point returns information about **all** Nobel Prizes. 
+This particular end point returns information about **all** Nobel Prizes.
 
 You can query the endpoint for more specific data by adding a _query string_ to the url. For instance:
 
 ```
-GET http://localhost:3000/prizes?category=economics
+http://localhost:3000/prizes?category=economics
 ```
 
 
@@ -126,15 +126,15 @@ The information returned has the following JSON format (only the first two match
 The backend application exposes the following Web API end point for Nobel Laureates:
 
 ```
-GET http://localhost:3000/laureates
+http://localhost:3000/laureates
 ```
 
-As specified, this particular end point returns information about **all** Nobel Laureates. 
+As specified, this particular end point returns information about **all** Nobel Laureates.
 
 You can query the endpoint for more specific data by adding a _query string_ to the url. For instance:
 
 ```
-GET http://localhost:3000/laureates?surname=Dylan
+http://localhost:3000/laureates?surname=Dylan
 ```
 
 The information returned has the following JSON format:
