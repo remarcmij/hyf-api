@@ -5,7 +5,7 @@
       this.root = document.getElementById('root');
     }
 
-    renderAll() {
+    render() {
       this.renderHeader();
       const ul = this.renderListContainer();
       this.renderListContent(ul);
@@ -43,6 +43,10 @@
     }
   }
 
-  const app = new NobelApp();
-  app.renderAll();
+  function start() {
+    const app = new NobelApp();
+    app.render();
+  }
+
+  window.onload = start;
 }
