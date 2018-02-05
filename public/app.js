@@ -47,11 +47,11 @@
     }
 
     onPrizesClick(value) {
-      console.log(PRIZES_ENDPOINT + '?' + value);
+      console.log(PRIZES_ENDPOINT + value);
     }
 
     onLaureatesClick(value) {
-      console.log(LAUREATES_ENDPOINT + '?' + value);
+      console.log(LAUREATES_ENDPOINT + value);
     }
 
   }
