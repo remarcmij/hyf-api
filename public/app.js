@@ -3,19 +3,14 @@
   const PRIZES_ENDPOINT = BASE_URL + '/prizes';
   const LAUREATES_ENDPOINT = BASE_URL + '/laureates';
 
-  class NobelApp {
+  class View {
 
     constructor() {
       this.root = document.getElementById('root');
     }
 
     render() {
-      this.renderHeader();
-      const ul = this.renderListContainer();
-      this.renderListContent(ul);
-    }
-
-    renderHeader() {
+      // render header
       const h1 = document.createElement('h1');
       this.root.appendChild(h1);
       h1.innerHTML = 'Nobel Prize Winners';
@@ -32,15 +27,12 @@
       div.appendChild(laureatesButton);
       laureatesButton.innerHTML = 'LAUREATES';
       laureatesButton.addEventListener('click', () => this.onLaureatesClick(input.value));
-    }
 
-    renderListContainer() {
+      // render list container
       const ul = document.createElement('ul');
       this.root.appendChild(ul);
-      return ul;
-    }
 
-    renderListContent(ul) {
+      // render list content
       const li = document.createElement('li');
       ul.appendChild(li);
       li.innerHTML = 'Alas, not me!';
@@ -57,8 +49,8 @@
   }
 
   function start() {
-    const app = new NobelApp();
-    app.render();
+    const view = new View();
+    view.render();
   }
 
   window.onload = start;
