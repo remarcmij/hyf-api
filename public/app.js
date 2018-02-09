@@ -14,5 +14,4 @@ var App = App || {};
   }
 
   window.onload = start;
-
 }
