@@ -8,6 +8,16 @@ The Web API exposed here provides information about Nobel Prize Winners and Nobe
 
 Although there is an online [NobelPrize.org](https://nobelprize.readme.io/) API, it was chosen for this repo to provide the Laureate and Prize information through a local backend, so that the application can be demonstrated and extended without the need for an Internet connection. However, the actual Nobel Prize data used here was downloaded in JSON data format through the official API.
 
+## Principles covered
+
+- Separation of Concerns
+- DRY
+- Observer pattern
+- MVC pattern
+- (simple) Module pattern
+- ES6 classes and inheritence
+- ES6 shorthand notation
+
 ## Installation
 
 To install this application, follow these steps:
