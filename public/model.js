@@ -6,15 +6,10 @@ var App = App || {};
 {
   const BASE_URL = 'http://localhost:3000/';
 
-  class Model {
+  class Model extends App.Observable {
     constructor() {
+      super();
       this.cache = new Map();
-      this.subscribers = new Set();
-    }
-
-    subscribe(subscriber) {
-      this.subscribers.add(subscriber);
-      return () => this.subscribers.delete(subscriber);
     }
 
     fetchData(type, query) {
@@ -33,13 +28,6 @@ var App = App || {};
           this.notify(result);
         });
     }
-
-    notify(data) {
-      this.subscribers.forEach(subscriber => {
-        subscriber.update(data);
-      });
-    }
-
   }
 
   App.Model = Model;
