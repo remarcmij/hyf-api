@@ -9,12 +9,9 @@ var App = App || {};
       this.model = model;
     }
 
-    fetchPrizes(query) {
-      this.model.fetchData('prizes', query);
-    }
-
-    fetchLaureates(query) {
-      this.model.fetchData('laureates', query);
+    execute(action) {
+      const { type, query } = action;
+      this.model.fetchData(type, query);
     }
   }
 

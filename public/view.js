@@ -57,11 +57,11 @@ var App = App || {};
     }
 
     onPrizesClick(value) {
-      this.controller.fetchPrizes(value);
+      this.controller.execute({ type: 'prizes', query: value });
     }
 
     onLaureatesClick(value) {
-      this.controller.fetchLaureates(value);
+      this.controller.execute({ type: 'laureates', query: value });
     }
 
     update(typeAndData) {
