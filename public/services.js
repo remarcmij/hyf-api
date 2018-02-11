@@ -7,11 +7,12 @@ var App = App || {};
   function fetchJSON(url) {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      xhr.addEventListener('load', () => resolve(xhr.responseText));
-      xhr.addEventListener('error', () => reject(xhr.statusText));
       xhr.open('GET', url);
+      xhr.responseType = 'json';
+      xhr.onload = () => resolve(xhr.response);
+      xhr.onerror = () => reject(xhr.statusText);
       xhr.send();
-    }).then(res => JSON.parse(res));
+    });
   }
 
   App.services = {
