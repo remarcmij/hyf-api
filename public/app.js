@@ -12,7 +12,6 @@
     render() {
       this.renderHeader();
       this.renderListContainer();
-      this.renderListContent();
     }
 
     renderHeader() {
