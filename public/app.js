@@ -10,42 +10,70 @@
     }
 
     render() {
-      // render header
-      const h1 = document.createElement('h1');
-      this.root.appendChild(h1);
-      h1.innerHTML = 'Nobel Prize Winners';
+      this.renderHeader();
+      this.renderListContainer();
+      this.renderListContent();
+    }
 
-      const div = document.createElement('div');
-      this.root.appendChild(div);
-      const input = document.createElement('input');
-      div.appendChild(input);
-      const prizesButton = document.createElement('button');
-      div.appendChild(prizesButton);
-      prizesButton.innerHTML = 'PRIZES';
+    renderHeader() {
+      createAndAppend('h1', this.root, 'Nobel Prize Winners');
+      const div = createAndAppend('div', this.root);
+      const input = createAndAppend('input', div);
+      input.setAttribute('type', 'text');
+      const prizesButton = createAndAppend('button', div, 'PRIZES');
       prizesButton.addEventListener('click', () => this.onPrizesClick(input.value));
-      const laureatesButton = document.createElement('button');
-      div.appendChild(laureatesButton);
-      laureatesButton.innerHTML = 'LAUREATES';
+      const laureatesButton = createAndAppend('button', div, 'LAUREATES');
       laureatesButton.addEventListener('click', () => this.onLaureatesClick(input.value));
+    }
 
-      // render list container
+    renderListContainer() {
       const ul = document.createElement('ul');
       this.root.appendChild(ul);
+      this.listContainer = ul;
+    }
 
-      // render list content
-      const li = document.createElement('li');
-      ul.appendChild(li);
-      li.innerHTML = 'Alas, not me!';
+    renderListContent(data) {
+      console.log(data);
     }
 
     onPrizesClick(value) {
-      console.log(PRIZES_ENDPOINT + value);
+      fetchJSON(PRIZES_ENDPOINT + value, (error, data) => {
+        if (error) {
+          console.log(error);
+        } else {
+          this.renderListContent(data);
+        }
+      });
     }
 
     onLaureatesClick(value) {
-      console.log(LAUREATES_ENDPOINT + value);
+      fetchJSON(LAUREATES_ENDPOINT + value, (error, data) => {
+        if (error) {
+          console.log(error);
+        } else {
+          this.renderListContent(data);
+        }
+      });
     }
 
+  }
+
+  function createAndAppend(name, parent, innerHTML) {
+    const child = document.createElement(name);
+    parent.appendChild(child);
+    if (innerHTML !== undefined) {
+      child.innerHTML = innerHTML;
+    }
+    return child;
+  }
+
+  function fetchJSON(url, cb) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.responseType = 'json';
+    xhr.send();
+    xhr.onload = () => cb(null, xhr.response);
+    xhr.onerror = () => cb(new Error(xhr.statusText));
   }
 
   function start() {
