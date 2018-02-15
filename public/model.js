@@ -2,7 +2,6 @@
 
 // eslint-disable-next-line no-var
 var App = App || {};
-
 {
   const BASE_URL = 'http://localhost:3000/';
 

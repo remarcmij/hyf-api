@@ -1,9 +1,7 @@
 'use strict';
 
-
 // eslint-disable-next-line no-var
 var App = App || {};
-
 {
   class Observable {
     constructor() {

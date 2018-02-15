@@ -2,7 +2,6 @@
 
 // eslint-disable-next-line no-var
 var App = App || {};
-
 {
   const { Model, View, Controller } = App;
 

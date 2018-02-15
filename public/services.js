@@ -2,7 +2,6 @@
 
 // eslint-disable-next-line no-var
 var App = App || {};
-
 {
   function fetchJSON(url) {
     return new Promise((resolve, reject) => {
