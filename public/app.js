@@ -26,9 +26,7 @@
     }
 
     renderListContainer() {
-      const ul = document.createElement('ul');
-      this.root.appendChild(ul);
-      this.listContainer = ul;
+      this.listContainer = createAndAppend('div', this.root, null, 'list-container');
     }
 
     renderPrizes(prizes) {
