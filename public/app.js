@@ -100,14 +100,16 @@
         }
       });
     }
-
   }
 
-  function createAndAppend(name, parent, innerHTML) {
+  function createAndAppend(name, parent, innerHTML, className) {
     const child = document.createElement(name);
     parent.appendChild(child);
-    if (innerHTML !== undefined) {
+    if (innerHTML) {
       child.innerHTML = innerHTML;
+    }
+    if (className) {
+      child.classList.add(className);
     }
     return child;
   }
