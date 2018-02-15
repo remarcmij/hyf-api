@@ -32,8 +32,54 @@
       this.listContainer = ul;
     }
 
-    renderListContent(data) {
-      console.log(data);
+    renderPrizes(prizes) {
+      const renderPrize = prize => {
+        const table = createAndAppend('table', this.listContainer, null, 'md-whiteframe-3dp');
+        const tbody = createAndAppend('tbody', table);
+        this.addRow(tbody, 'Year', prize.year);
+        this.addRow(tbody, 'Category', prize.category);
+        const laureates = prize.laureates.reduce((prev, laureate) => {
+          if (prev) {
+            prev += '<br>';
+          }
+          prev += `${laureate.firstname} ${laureate.surname}`;
+          if (laureate.motivation) {
+            prev += `: ${laureate.motivation}`;
+          }
+          return prev;
+        }, '');
+        this.addRow(tbody, 'Laureates', laureates);
+      };
+
+      prizes.forEach(prize => renderPrize(prize));
+    }
+
+    renderLaureates(laureates) {
+      laureates.forEach(laureate => this.renderLaureate(laureate));
+    }
+
+    renderLaureate(laureate) {
+      const { surname, firstname } = laureate;
+      const table = createAndAppend('table', this.listContainer, null, 'md-whiteframe-3dp');
+      const tbody = createAndAppend('tbody', table);
+      this.addRow(tbody, 'Name', `${firstname} ${surname}`);
+      this.addRow(tbody, 'Born', laureate.born + '<br>' + laureate.bornCountry);
+      if (laureate.died !== '0000-00-00') {
+        this.addRow(tbody, 'Died', laureate.died + '<br>' + laureate.diedCountry);
+      }
+      const prizeInfo = laureate.prizes.reduce((prev, prize) => {
+        if (prev) {
+          prev += '<br>';
+        }
+        return prev + `${prize.year}, ${prize.category}: ${prize.motivation}`;
+      }, '');
+      this.addRow(tbody, 'Prize(s)', prizeInfo);
+    }
+
+    addRow(tbody, label, value) {
+      const row = createAndAppend('tr', tbody);
+      createAndAppend('td', row, label + ':', 'label');
+      createAndAppend('td', row, value);
     }
 
     onPrizesClick(value) {
@@ -41,7 +87,7 @@
         if (error) {
           console.log(error);
         } else {
-          this.renderListContent(data);
+          this.renderPrizes(data);
         }
       });
     }
@@ -51,7 +97,7 @@
         if (error) {
           console.log(error);
         } else {
-          this.renderListContent(data);
+          this.renderLaureates(data);
         }
       });
     }
