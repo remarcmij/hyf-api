@@ -110,11 +110,5 @@ var App = App || {};
     return child;
   }
 
-  function formatDateAndCountry(date, country) {
-    const born = moment(date).format('D MMMM YYYY') + '<br>' + laureate.bornCountry;
-    const died = laureate.died === '0000-00-00' ? '' : (moment(laureate.died).format(fmt) + '<br>' + laureate.diedCountry);
-    return `<br>${born}<br>${died}`;
-  }
-
   App.View = View;
 }
