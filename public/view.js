@@ -59,7 +59,7 @@ var App = App || {};
       const { surname, firstname } = laureate;
       const table = createAndAppend('table', this.listContainer, null, 'md-whiteframe-3dp');
       const tbody = createAndAppend('tbody', table);
-      this.addRow(tbody, 'Name', `${firstname} ${surname}`);
+      this.addRow(tbody, 'Name', `${firstname} ${surname || ''}`);
       this.addRow(tbody, 'Born', moment(laureate.born).format('D MMMM YYYY') + '<br>' + laureate.bornCountry);
       if (laureate.died !== '0000-00-00') {
         this.addRow(tbody, 'Died', moment(laureate.died).format('D MMMM YYYY') + '<br>' + laureate.diedCountry);
@@ -68,7 +68,11 @@ var App = App || {};
         if (prev) {
           prev += '<br>';
         }
-        return prev + `${prize.year}, ${prize.category}: ${prize.motivation}`;
+        prev += `${prize.year}, ${prize.category}`;
+        if (prize.motivation) {
+          prev += `: ${prize.motivation}`;
+        }
+        return prev;
       }, '');
       this.addRow(tbody, 'Prize(s)', prizeInfo);
     }
@@ -80,10 +84,12 @@ var App = App || {};
     }
 
     onPrizesClick(value) {
+      this.listContainer.innerHTML = '';
       this.controller.execute({ type: 'prizes', query: value });
     }
 
     onLaureatesClick(value) {
+      this.listContainer.innerHTML = '';
       this.controller.execute({ type: 'laureates', query: value });
     }
 
