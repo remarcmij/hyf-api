@@ -41,7 +41,7 @@ var App = App || {};
           }
           prev += `${laureate.firstname} ${laureate.surname}`;
           if (laureate.motivation) {
-            prev += `: ${laureate.motivation}`;
+            prev += `: <em>${laureate.motivation}</em>`;
           }
           return prev;
         }, '');
@@ -70,7 +70,7 @@ var App = App || {};
         }
         prev += `${prize.year}, ${prize.category}`;
         if (prize.motivation) {
-          prev += `: ${prize.motivation}`;
+          prev += `: <em>${prize.motivation}</em>`;
         }
         return prev;
       }, '');
