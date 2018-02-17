@@ -31,7 +31,8 @@
 
     renderPrizes(prizes) {
       const renderPrize = prize => {
-        const table = createAndAppend('table', this.listContainer, null, 'md-whiteframe-3dp');
+        const div = createAndAppend('div', this.listContainer, null, 'md-whiteframe-3dp');
+        const table = createAndAppend('table', div);
         const tbody = createAndAppend('tbody', table);
         this.addRow(tbody, 'Year', prize.year);
         this.addRow(tbody, 'Category', prize.category);
@@ -54,7 +55,8 @@
 
     renderLaureate(laureate) {
       const { surname, firstname } = laureate;
-      const table = createAndAppend('table', this.listContainer, null, 'md-whiteframe-3dp');
+      const div = createAndAppend('div', this.listContainer, null, 'md-whiteframe-3dp');
+      const table = createAndAppend('table', div);
       const tbody = createAndAppend('tbody', table);
       this.addRow(tbody, 'Name', `${firstname} ${surname || ''} `);
       this.addRow(tbody, 'Born', laureate.born + '<br>' + laureate.bornCountry);
