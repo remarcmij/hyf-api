@@ -40,6 +40,7 @@ table {
     margin-top: 16px;
     padding: 16px;
     table-layout: fixed;
+    color: rgb(0, 0, 0, 81%);
 }
 
 td {
@@ -53,6 +54,16 @@ td:first-child {
 
 td.label {
     font-weight: bold;
+}
+
+td ul {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 16px;
+}
+
+td li {
+    padding-bottom: 8px;
 }
 
 .list-container {

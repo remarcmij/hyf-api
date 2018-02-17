@@ -36,16 +36,13 @@ var App = App || {};
         this.addRow(tbody, 'Year', prize.year);
         this.addRow(tbody, 'Category', prize.category);
         const laureates = prize.laureates.reduce((prev, laureate) => {
-          if (prev) {
-            prev += '<br>';
-          }
-          prev += `${laureate.firstname} ${laureate.surname}`;
+          prev += `<li>${laureate.firstname} ${laureate.surname || ''}`;
           if (laureate.motivation) {
-            prev += `: <em>${laureate.motivation}</em>`;
+            prev += `:</br><em>${laureate.motivation}</em>`;
           }
-          return prev;
-        }, '');
-        this.addRow(tbody, 'Laureates', laureates);
+          return prev + '</li>';
+        }, '<ul>') + '</ul>';
+        this.addRow(tbody, 'Laureate(s)', laureates);
       };
 
       prizes.forEach(prize => renderPrize(prize));
@@ -59,21 +56,18 @@ var App = App || {};
       const { surname, firstname } = laureate;
       const table = createAndAppend('table', this.listContainer, null, 'md-whiteframe-3dp');
       const tbody = createAndAppend('tbody', table);
-      this.addRow(tbody, 'Name', `${firstname} ${surname || ''}`);
+      this.addRow(tbody, 'Name', `${firstname} ${surname || ''} `);
       this.addRow(tbody, 'Born', moment(laureate.born).format('D MMMM YYYY') + '<br>' + laureate.bornCountry);
       if (laureate.died !== '0000-00-00') {
         this.addRow(tbody, 'Died', moment(laureate.died).format('D MMMM YYYY') + '<br>' + laureate.diedCountry);
       }
       const prizeInfo = laureate.prizes.reduce((prev, prize) => {
-        if (prev) {
-          prev += '<br>';
-        }
-        prev += `${prize.year}, ${prize.category}`;
+        prev += `<li>${prize.year}, ${prize.category}`;
         if (prize.motivation) {
-          prev += `: <em>${prize.motivation}</em>`;
+          prev += `:</br> <em>${prize.motivation}</em>`;
         }
-        return prev;
-      }, '');
+        return prev + '</li>';
+      }, '<ul>') + '</ul>';
       this.addRow(tbody, 'Prize(s)', prizeInfo);
     }
 
